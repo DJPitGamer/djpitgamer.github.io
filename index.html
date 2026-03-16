@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pineapple Hater's Sanctuary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🍍 The Pineapple Hater's Sanctuary 🍍</h1>
+            <p class="tagline">Where we celebrate what's YUMMY and what's NOT</p>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="container">
+            <ul>
+                <li><a href="#" onclick="showHome()">Home</a></li>
+                <li><a href="#" onclick="showBlog()">Blog</a></li>
+                <li><a href="#" onclick="showRatings()">Ratings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home-section" class="section active">
+            <h2>Welcome to the Sanctuary</h2>
+            <p>
+                This is a safe space for pineapple haters everywhere. Whether you think pineapple on pizza is a crime 
+                against humanity or you just prefer your fruits in their natural state, you've found your people.
+            </p>
+            <p>
+                Share your thoughts, rate foods, and join the community of those who believe pineapple should stay 
+                where it belongs—in tropical drinks, not on pizza!
+            </p>
+            <div class="cta-buttons">
+                <button onclick="showBlog()" class="btn btn-primary">Read Our Blog</button>
+                <button onclick="showRatings()" class="btn btn-secondary">See Ratings</button>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog-section" class="section">
+            <h2>Blog Posts</h2>
+            <div id="blog-posts" class="blog-grid">
+                <!-- Blog posts will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Ratings Section -->
+        <section id="ratings-section" class="section">
+            <h2>Food Ratings</h2>
+            <div class="ratings-container">
+                <div class="rating-form">
+                    <h3>Rate a Food</h3>
+                    <input type="text" id="foodName" placeholder="Food name (e.g., Hawaiian Pizza, Mango)" maxlength="50">
+                    <div class="rating-buttons">
+                        <button onclick="rateFoodYummy()" class="btn btn-yummy">👍 YUMMY</button>
+                        <button onclick="rateFoodNotYummy()" class="btn btn-not-yummy">👎 NOT YUMMY</button>
+                    </div>
+                </div>
+                <div id="ratings-list" class="ratings-list">
+                    <!-- Ratings will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Post Detail Modal -->
+    <div id="post-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="post-detail">
+                <!-- Post details will be loaded here -->
+            </div>
+            <div class="comments-section">
+                <h3>Comments</h3>
+                <div id="comments-list" class="comments-list">
+                    <!-- Comments will be loaded here -->
+                </div>
+                <div class="comment-form">
+                    <input type="text" id="commentName" placeholder="Your name" maxlength="50">
+                    <textarea id="commentText" placeholder="Your comment..." maxlength="500"></textarea>
+                    <button onclick="addComment()" class="btn btn-primary">Post Comment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 The Pineapple Hater's Sanctuary. All rights reserved. 🍍❌</p>
+        </div>
+    </footer>
+
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
