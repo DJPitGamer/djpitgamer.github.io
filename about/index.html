@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privater Steckbrief von Nico Pit Döring – Entwickler, Musikproduzent und Fahrradfahrer.">
+  <title>Über mich | Nico Pit Döring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="about.css">
+</head>
+<body>
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Zur Startseite">DJ<span>Pit</span>Gamer</a>
+    <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Zur Startseite</a>
+  </header>
+
+  <main class="page-shell">
+    <section class="profile-hero" aria-labelledby="page-title">
+      <div class="eyebrow"><span></span> Persönlicher Steckbrief</div>
+      <div class="hero-grid">
+        <div class="intro-copy">
+          <p class="kicker">Hallo, ich bin</p>
+          <h1 id="page-title">Nico <strong>Pit</strong> Döring</h1>
+          <p class="lead">Developer, Musikliebhaber und neugieriger Tüftler aus Heggen. Ich lerne am liebsten, indem ich Ideen ausprobiere und ihnen Leben einhauche.</p>
+          <div class="quick-facts" aria-label="Kurzinformationen">
+            <span><b>21</b> Jahre</span>
+            <span><b>DE</b> Heggen</span>
+            <span><b>01/05</b> Geburtstag</span>
+          </div>
+        </div>
+
+        <div class="portrait-wrap">
+          <!-- Bild hier einfügen: <img src="images/nico.jpg" alt="Portrait von Nico Pit Döring"> -->
+          <div class="portrait-placeholder" role="img" aria-label="Platzhalter für ein persönliches Portrait">
+            <div class="portrait-icon">＋</div>
+            <span>Dein Bild</span>
+            <small>portrait.jpg</small>
+          </div>
+          <span class="portrait-label">// profile_image</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="details-grid" aria-label="Steckbriefdetails">
+      <article class="info-card identity-card">
+        <div class="card-label">01 / IDENTITÄT</div>
+        <h2>Ein paar Fakten</h2>
+        <dl class="facts-list">
+          <div><dt>Vollständiger Name</dt><dd>Nico Pit Döring</dd></div>
+          <div><dt>Geboren</dt><dd>23. Januar 2005</dd></div>
+          <div><dt>Wohnort</dt><dd>Heggen</dd></div>
+          <div><dt>Ausbildung bei</dt><dd>REWE Dortmund<br><span>REWE Bamenohl</span></dd></div>
+        </dl>
+      </article>
+
+      <article class="info-card">
+        <div class="card-label">02 / INTERESSEN</div>
+        <h2>Was mich bewegt</h2>
+        <div class="interest-list">
+          <div class="interest"><span class="interest-number">01</span><span>Programmieren</span><i>↗</i></div>
+          <div class="interest"><span class="interest-number">02</span><span>Musik produzieren</span><i>↗</i></div>
+          <div class="interest"><span class="interest-number">03</span><span>Rad fahren</span><i>↗</i></div>
+        </div>
+      </article>
+
+      <article class="info-card languages-card">
+        <div class="card-label">03 / SPRACHEN</div>
+        <h2>Sprachkenntnisse</h2>
+        <div class="language-list">
+          <div class="language-row"><span>Deutsch</span><span class="level native">Muttersprache</span></div>
+          <div class="language-row"><span>Englisch</span><span class="level">Schule &amp; online</span></div>
+          <div class="language-row"><span>Niederländisch</span><span class="level learning">Lernend</span></div>
+          <div class="language-row"><span>Polnisch</span><span class="level learning">Lernend</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="quote-section" aria-label="Persönliches Motto">
+      <span class="quote-mark">“</span>
+      <blockquote>Jeder Fehler ist ein Schritt näher an der Lösung.</blockquote>
+      <span class="quote-caption">— meine Art zu lernen</span>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Nico Pit Döring</span>
+    <span class="footer-status"><i></i> online &amp; am bauen</span>
+  </footer>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
+      const chars = 'アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}';
+      let columns = 0;
+      let drops = [];
+      let fontSize = 15;
+
+      function resize() {
+        const density = window.innerWidth < 600 ? 24 : 18;
+        fontSize = window.innerWidth < 600 ? 13 : 15;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        columns = Math.ceil(canvas.width / density);
+        drops = Array.from({ length: columns }, () => Math.random() * -40);
+      }
+
+      function draw() {
+        ctx.fillStyle = 'rgba(5, 9, 10, 0.085)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = `${fontSize}px DM Mono, monospace`;
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          const x = i * (window.innerWidth < 600 ? 24 : 18);
+          const y = drops[i] * fontSize;
+          ctx.fillStyle = Math.random() > 0.94 ? '#d9ff72' : 'rgba(126, 241, 65, 0.42)';
+          ctx.fillText(char, x, y);
+          if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i] += 0.72;
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+      draw();
+    })();
+  </script>
+</body>
+</html>
