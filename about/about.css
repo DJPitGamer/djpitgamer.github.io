@@ -50,7 +50,12 @@ h1 strong { color: var(--green); font-weight: 500; }
 .quick-facts { display: flex; flex-wrap: wrap; gap: 12px 28px; color: var(--muted); font: .7rem var(--mono); }
 .quick-facts b { margin-right: 5px; color: var(--text); font-weight: 500; }
 
-.portrait-wrap { position: relative; }
+.portrait-wrap {
+  position: relative;
+  max-width: 240px; /* Begrenzt die Breite am PC auf eine passende Größe */
+  width: 100%;
+  margin-inline: auto; /* Zentriert die Box im Grid-Bereich */
+}
 
 .portrait-placeholder {
   position: relative;
